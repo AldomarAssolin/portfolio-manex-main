@@ -8,6 +8,8 @@ use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\SkillsController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\CategoriesController;
@@ -35,6 +37,22 @@ Route::middleware(['web', 'auth'])
 ->name('admin.')
 ->group(function () {
     Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
+});
+
+// profile
+Route::middleware(['web', 'auth'])
+->prefix('admin')
+->name('admin.')
+->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+});
+
+// Contacts
+Route::middleware(['web', 'auth'])
+->prefix('admin')
+->name('admin.')
+->group(function () {
+    Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts');
 });
 
 // Skills

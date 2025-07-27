@@ -1,0 +1,137 @@
+ body {
+     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+     font-family: 'Poppins', sans-serif;
+ }
+
+ .hero-section {
+     min-height: 90vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     color: #fff;
+     background: url('../../public/images/PlanetArcadia.png') no-repeat center center/cover;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .hero-section::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(0, 0, 0, 0.5);
+     z-index: 1;
+ }
+
+ .hero-content {
+     position: relative;
+     z-index: 2;
+ }
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero-content img {
+    animation: spin 16s linear infinite;
+}
+
+ .profile-img {
+     border: 5px solid #fff;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+     border-radius: 50%;
+     width: 200px;
+     height: 200px;
+     object-fit: cover;
+ }
+
+ .section-title {
+     font-weight: 700;
+     color: #2c3e50;
+     margin-bottom: 2rem;
+     position: relative;
+ }
+
+ .section-title::after {
+     content: '';
+     width: 50px;
+     height: 4px;
+     background: #007bff;
+     position: absolute;
+     bottom: -10px;
+     left: 50%;
+     transform: translateX(-50%);
+ }
+
+ .skill-card,
+ .experience-card,
+ .education-card,
+ .certificate-card {
+     background: #fff;
+     border-radius: 10px;
+     padding: 20px;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+     transition: transform 0.3s ease;
+ }
+
+ .card-skills,
+ .info-box{
+    transition: transform 0.3s ease;
+ }
+
+ .skill-card:hover,
+ .experience-card:hover,
+ .education-card:hover,
+ .certificate-card:hover,
+ .card-skills:hover,
+ .info-box:hover {
+     transform: translateY(-10px);
+ }
+
+ .progress {
+     height: 10px;
+     border-radius: 5px;
+ }
+
+ .timeline {
+     position: relative;
+     padding: 20px 0;
+ }
+
+ .timeline::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     width: 4px;
+     background: #007bff;
+     left: 0;
+ }
+
+ .timeline-item {
+     position: relative;
+     margin-bottom: 30px;
+ }
+
+ .timeline-item::before {
+     content: '\f058';
+     font-family: 'Font Awesome 6 Free';
+     font-weight: 900;
+     position: absolute;
+     top: 0;
+     left: 0;
+     background: #fff;
+     color: #007bff;
+     border-radius: 50%;
+     width: 30px;
+     height: 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ }

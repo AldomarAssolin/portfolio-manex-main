@@ -11,11 +11,11 @@
 
 @section('content')
 
-@include('public.components.banner')
-@include('public.components.about')
-@include('public.components.aptidoes')
-@include('public.components.skills')
-@include('public.components.projects')
-@include('public.components.posts')
+@include('components.hero')
+@include('public.sections.about')
+@include('public.sections.aptidoes')
+@include('public.sections.skills')
+@include('public.sections.projects')
+@include('public.sections.posts')
 
 @endsection

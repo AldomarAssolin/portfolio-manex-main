@@ -18,25 +18,12 @@
 <!-- Skills Section -->
 <section class="py-5 bg-light">
     <div class="container">
-        <h2 class="section-title text-center">Habilidades</h2>
-        <div class="row g-4">
-            @foreach (['PHP' => 90, 'Laravel' => 85, 'JavaScript' => 80, 'Bootstrap' => 95] as $skill => $progress)
-            <div class="col-md-6 col-lg-3">
-                <div class="skill-card">
-                    <h5 class="fw-bold">{{ $skill }}</h5>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $progress }}%;"
-                            aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
+        @include('public.sections.skills')
     </div>
 </section>
 
 <!-- Experience Section -->
-<section class="py-5 bg-sky-950">
+<section class="py-5">
     <div class="container">
         <h2 class="section-title text-center">Experiências</h2>
         <div class="timeline">
@@ -53,7 +40,6 @@
             <!-- /.timeline-label -->
             <!-- timeline item -->
             <div>
-                <i class="fas fa-envelope bg-blue"></i>
                 <div class="education-card timeline-item {{ $exp['bg'] }}">
                     <div class="timeline-body">
                         <h5 class="fw-bold text-white">{{ $exp['title'] }}</h5>
@@ -63,7 +49,10 @@
                     </div>
                     <div class="timeline-footer">
                         <a class="btn btn-primary btn-sm">Read more</a>
+                        @auth
                         <a class="btn btn-danger btn-sm">Delete</a>
+                        @endauth
+
                     </div>
                 </div>
             </div>
@@ -79,8 +68,8 @@
         <h2 class="section-title text-center">Formação Acadêmica</h2>
         <div class="row g-4">
             @foreach ([
-            ['degree' => 'Bacharel em Ciência da Computação', 'institution' => 'Universidade Federal', 'period' => '2015 - 2019'],
-            ['degree' => 'Curso Técnico em Informática', 'institution' => 'ETEC', 'period' => '2012 - 2014']
+            ['degree' => 'Técnico em Soldagem', 'institution' => 'Colégio Técnico Industrial de Santa Maria, RS - CTISM', 'period' => '2018 - 2019'],
+            ['degree' => 'Análise e Desenvolvimento de Sistemas', 'institution' => 'Uniasselvi', 'period' => '2022 - 2026']
             ] as $edu)
             <div class="col-md-6">
                 <div class="education-card">

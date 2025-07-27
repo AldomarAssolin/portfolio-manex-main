@@ -112,26 +112,3 @@
      background: #007bff;
      left: 0;
  }
-
- .timeline-item {
-     position: relative;
-     margin-bottom: 30px;
- }
-
- .timeline-item::before {
-     content: '\f058';
-     font-family: 'Font Awesome 6 Free';
-     font-weight: 900;
-     position: absolute;
-     top: 0;
-     left: 0;
-     background: #fff;
-     color: #007bff;
-     border-radius: 50%;
-     width: 30px;
-     height: 30px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
- }

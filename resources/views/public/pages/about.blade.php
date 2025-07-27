@@ -28,7 +28,7 @@
   </div><!-- /.container-fluid -->
 </section>
 
-@include('components.hero')
 @include('public.sections.about-content')
+
 
 @endsection

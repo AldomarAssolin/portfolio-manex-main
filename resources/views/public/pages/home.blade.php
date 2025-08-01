@@ -17,5 +17,6 @@
 @include('public.sections.skills')
 @include('public.sections.projects')
 @include('public.sections.posts')
+@include('components.faq')
 
 @endsection

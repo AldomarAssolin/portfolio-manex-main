@@ -14,6 +14,7 @@
         </div>
     </div>
 </section>
+<!-- /.About Description -->
 
 <!-- Skills Section -->
 <section class="py-5 bg-light">
@@ -21,6 +22,7 @@
         @include('public.sections.skills')
     </div>
 </section>
+<!-- /.Skills Section -->
 
 <!-- Experience Section -->
 <section class="py-5">
@@ -61,6 +63,7 @@
         </div>
     </div>
 </section>
+<!-- /.Experience Section -->
 
 <!-- Education Section -->
 <section class="py-5 bg-light">
@@ -81,6 +84,7 @@
         </div>
     </div>
 </section>
+<!-- /.Education Section -->
 
 <!-- Certificates Section -->
 <section class="py-5">
@@ -101,3 +105,4 @@
         </div>
     </div>
 </section>
+<!-- /.Certificates Section -->

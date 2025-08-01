@@ -6,18 +6,12 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ProjectsController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ContactsController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\Admin\CategoriesController;
-use App\Http\Controllers\Admin\TagsController;
-use App\Http\Controllers\Admin\PostsController;
-use App\Http\Controllers\Admin\CommentsController;
-use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Public\ErrorController;
+use App\Http\Controllers\Public\ProjectsController as PublicProjectController;
 
 // Rotas protegidas do admin
 
@@ -36,8 +30,10 @@ Route::middleware(['web', 'auth'])
 ->prefix('admin')
 ->name('admin.')
 ->group(function () {
-    Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
+    Route::resource('projects', ProjectController::class);
 });
+
+//Route::resource('project', ProjectsController::class );
 
 // profile
 Route::middleware(['web', 'auth'])
@@ -67,8 +63,10 @@ Route::middleware(['web', 'auth'])
 // Rota pública para erro
 Route::get('/unauthorized', [ErrorController::class, 'unauthorized'])->name('unauthorized');
 
+// *********************************************************
 // Public routes
-// Rotas públicas
+//********************************************* */
+
 Route::get('/', function () {
     return view('public.home');
 })->name('home');
@@ -79,9 +77,12 @@ Route::get('/about', function () {
     return view('public.pages.about');
 })->name('about');
 
-Route::get('/projects', function () {
-    return view('public.pages.projects');
-})->name('projects');
+
+// Página com todos os projetos
+Route::get('/projects', [PublicProjectController::class, 'index'])->name('projects');
+
+// Página de projeto individual
+Route::get('/projects/{project}', [PublicProjectController::class, 'show'])->name('public.projects.show');
 
 Route::get('/blog', function () {
     return view('public.pages.blog');

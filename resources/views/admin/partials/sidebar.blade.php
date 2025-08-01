@@ -24,7 +24,7 @@
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
             <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
+              <i class="bi bi-search"></i>
             </button>
           </div>
         </div>
@@ -45,7 +45,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.projects') }}" class="nav-link {{ request()->is('admin/projects') ? 'active' : '' }}">
+            <a href="{{ route('admin.projects.index') }}" class="nav-link {{ request()->is('admin/projects') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Projetos

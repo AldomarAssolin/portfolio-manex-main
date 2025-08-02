@@ -11,27 +11,33 @@ class ProjectsTable extends Component
     use WithPagination;
 
     public $search = '';
-    public $status = '';
+    public $status = 'all';
 
     protected $paginationTheme = 'bootstrap';
+    protected $updatesQueryString = ['search', 'status', 'page'];
 
-    // Sempre que alterar busca ou status, volta para a página 1
-    public function updatingSearch()
+    // Sempre que alterar busca/status, reseta para página 1
+    public function updatedSearch()
     {
         $this->resetPage();
     }
 
-    public function updatingStatus()
+    public function updatedStatus()
     {
         $this->resetPage();
     }
 
     public function render()
     {
-        $projects = Project::where('title', 'like', "%{$this->search}%")
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $query = Project::query()
+            ->when($this->status !== 'all', fn($q) => $q->where('status', $this->status))
+            ->when($this->search, fn($q) => $q->where('title', 'like', '%' . $this->search . '%'));
 
-        return view('livewire.admin.projects-table', compact('projects'));
+        $projects = $query->orderByDesc('created_at')->paginate(10);
+
+        return view('livewire.admin.projects-table', [
+            'projects' => $projects,
+            'total' => Project::count(),
+        ]);
     }
 }

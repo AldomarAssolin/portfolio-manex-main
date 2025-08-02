@@ -15,7 +15,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Sobre Mim</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">Projetos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('blog') }}">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('public.blog.index') }}">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contato</a></li>
                     </ul>
 

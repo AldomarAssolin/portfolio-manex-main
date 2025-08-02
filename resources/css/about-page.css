@@ -37,7 +37,7 @@
     }
 }
 
-.hero-content img {
+.hero-content img.profile-img {
     animation: spin 16s linear infinite;
 }
 

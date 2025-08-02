@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Controllers\Public\ErrorController;
 use App\Http\Controllers\Public\ProjectsController as PublicProjectController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Public\PostsController as PublicPostsController;
 
 // Rotas protegidas do admin
 
@@ -19,45 +21,52 @@ use App\Http\Controllers\Public\ProjectsController as PublicProjectController;
 
 
 Route::middleware(['web', 'auth'])
-->prefix('admin')
-->name('admin.')
-->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    });
 
 // Projetos
 Route::middleware(['web', 'auth'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::resource('projects', ProjectController::class);
+    });
+
+// Rota para gerenciar posts
+Route::middleware(['web', 'auth'])
 ->prefix('admin')
 ->name('admin.')
 ->group(function () {
-    Route::resource('projects', ProjectController::class);
+    Route::resource('posts', PostController::class);
 });
 
-//Route::resource('project', ProjectsController::class );
 
 // profile
 Route::middleware(['web', 'auth'])
-->prefix('admin')
-->name('admin.')
-->group(function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-});
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    });
 
 // Contacts
 Route::middleware(['web', 'auth'])
-->prefix('admin')
-->name('admin.')
-->group(function () {
-    Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts');
-});
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/contacts', [ContactsController::class, 'index'])->name('contacts');
+    });
 
 // Skills
 Route::middleware(['web', 'auth'])
-->prefix('admin')
-->name('admin.')
-->group(function () {
-    Route::get('/skills', [SkillsController::class, 'index'])->name('skills');
-});
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/skills', [SkillsController::class, 'index'])->name('skills');
+    });
 
 
 // Rota pública para erro
@@ -84,9 +93,10 @@ Route::get('/projects', [PublicProjectController::class, 'index'])->name('projec
 // Página de projeto individual
 Route::get('/projects/{project}', [PublicProjectController::class, 'show'])->name('public.projects.show');
 
-Route::get('/blog', function () {
-    return view('public.pages.blog');
-})->name('blog');
+// Blog routes
+Route::get('/blog', [PublicPostsController::class, 'index'])->name('public.blog.index');
+Route::get('/blog/{post:slug}', [PublicPostsController::class, 'show'])->name('public.blog.show');
+
 
 Route::get('/contact', function () {
     return view('public.pages.contact');
@@ -95,6 +105,7 @@ Route::get('/contact', function () {
 
 // login routes
 Auth::routes(['register' => false]);
+
 Route::get('/logout', function () {
     Auth::logout();
     return redirect()->route('home');

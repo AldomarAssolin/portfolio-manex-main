@@ -33,66 +33,66 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-       <li class="nav-item">
-    <a href="{{ route('admin.dashboard') }}" class="nav-link">
-        <i class="nav-icon bi bi-speedometer2"></i>
-        <p>Visão Geral</p>
-    </a>
-</li>
-
-<li class="nav-item has-treeview">
-    <a href="#" class="nav-link">
-        <i class="nav-icon bi bi-folder"></i>
-        <p>
-            Conteúdo
-            <i class="right bi bi-arrow-90deg-right"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="{{ route('admin.projects.index') }}" class="nav-link">
+          <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-speedometer2"></i>
+            <p>Visão Geral</p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link {{ request()->is('admin/projects*') || request()->is('admin/posts*') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-folder"></i>
+            <p>
+              Conteúdo
+              <i class="right bi bi-arrow-90deg-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('admin.projects.index') }}" class="nav-link {{ request()->is('admin/projects*') ? 'active' : '' }}">
                 <i class="bi bi-kanban nav-icon"></i>
                 <p>Projetos</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('admin.posts.index') }}" class="nav-link">
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.posts.index') }}" class="nav-link {{ request()->is('admin/posts*') ? 'active' : '' }}">
                 <i class="bi bi-postcard nav-icon"></i>
                 <p>Posts</p>
-            </a>
+              </a>
+            </li>
+          </ul>
         </li>
-    </ul>
-</li>
 
-<li class="nav-item has-treeview">
-    <a href="#" class="nav-link">
-        <i class="nav-icon bi bi-speedometer"></i>
-        <p>
-            Administração
-            <i class="right bi bi-arrow-90deg-right"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="#" class="nav-link">
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link   {{ request()->is('admin/settings*') || request()->is('admin/users*') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-speedometer"></i>
+            <p>
+              Administração
+              <i class="right bi bi-arrow-90deg-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="#" class="nav-link {{ request()->is('admin/settings*') ? 'active' : '' }}">
                 <i class="bi bi-gear nav-icon"></i>
                 <p>Configurações</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}">
                 <i class="bi bi-people nav-icon"></i>
                 <p>Usuários</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link {{ request()->is('admin/profile*') ? 'active' : '' }}">
                 <i class="bi bi-person-fill-gear nav-icon"></i>
                 <p>Meu Perfil</p>
-            </a>
+              </a>
+            </li>
+          </ul>
         </li>
-    </ul>
-</li>
 
 
       </ul>

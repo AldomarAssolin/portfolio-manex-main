@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <title>Dashboard - {{ Auth::user()->name }}</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/dashboard.css'])
+    @vite(['resources/js/dashboard.js', 'resources/css/dashboard.css'])
     @livewireStyles
 </head>
 
@@ -54,7 +54,7 @@
     <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../../bootstrap/cache/"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->

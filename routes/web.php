@@ -15,11 +15,17 @@ use App\Http\Controllers\Public\ProjectsController as PublicProjectController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Public\PostsController as PublicPostsController;
 
-// Rotas protegidas do admin
+/*
 
-//Route::middleware(['web', 'auth', 'is_admin']) -> solucionar 'is_admin' middleware.
+Route::middleware(['web', 'auth', 'is_admin']) -> solucionar 'is_admin' middleware.
 
+*/
 
+/* 
+*********************************************************
+ Rotas protegidas do admin
+********************************************* 
+*/
 Route::middleware(['web', 'auth'])
     ->prefix('admin')
     ->name('admin.')
@@ -68,13 +74,17 @@ Route::middleware(['web', 'auth'])
         Route::get('/skills', [SkillsController::class, 'index'])->name('skills');
     });
 
-
-// Rota pública para erro
+/* 
+*********************************************************
+ Rota pública para erro
+********************************************* 
+*/
 Route::get('/unauthorized', [ErrorController::class, 'unauthorized'])->name('unauthorized');
 
-// *********************************************************
-// Public routes
-//********************************************* */
+/* *********************************************************
+ Public routes
+********************************************* 
+*/
 
 Route::get('/', function () {
     return view('public.home');
@@ -103,7 +113,11 @@ Route::get('/contact', function () {
 })->name('contact');
 
 
-// login routes
+// Authentication routes
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 Auth::routes(['register' => false]);
 
 Route::get('/logout', function () {

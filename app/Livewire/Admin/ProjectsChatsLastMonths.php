@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Livewire\Admin;
 
-use App\Http\Controllers\Controller;
+use Livewire\Component;
 use App\Models\Project;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class ProjectsChatsLastMonths extends Component
 {
-
-    public function index()
+    public function render()
     {
         $totalProjects = Project::count();
         $publishedProjects = Project::where('status', 'published')->count();
@@ -35,11 +34,12 @@ class DashboardController extends Controller
             $totals[] = $projectByMonth[$monthNumber] ?? 0; // Adiciona ao array
         }
 
-        return view('admin.pages.dashboard.index', compact(
+        return view('livewire.admin.projects-chats-last-months', compact(
             'totalProjects',
             'publishedProjects',
             'draftProjects',
-           
+            'months',
+            'totals'
         ));
     }
 }

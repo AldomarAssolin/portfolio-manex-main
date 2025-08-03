@@ -3,6 +3,15 @@
 @section('title', 'Novo Post')
 
 @section('content')
+    <!-- Cabeçalho -->
+    <section class="content-header">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <h1>Criar Novo Post</h1>
+            <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </a>
+        </div>
+    </section>
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Criar Post</h3>

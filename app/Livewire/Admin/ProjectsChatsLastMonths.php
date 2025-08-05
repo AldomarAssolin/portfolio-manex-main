@@ -3,7 +3,7 @@
 namespace App\Livewire\Admin;
 
 use Livewire\Component;
-use App\Models\Project;
+use App\Models\Projeto as Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -12,8 +12,8 @@ class ProjectsChatsLastMonths extends Component
     public function render()
     {
         $totalProjects = Project::count();
-        $publishedProjects = Project::where('status', 'published')->count();
-        $draftProjects = Project::where('status', 'draft')->count();
+        $publishedProjects = Project::where('status', 'concluido')->count();
+        $draftProjects = Project::where('status', 'em_andamento')->count();
 
         // Dados para grafico de barras: último 6 meses
         $projectByMonth = Project::selectRaw('COUNT(*) as total, MONTH(created_at) as month')

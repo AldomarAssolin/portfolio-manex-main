@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ['Publicados', 'Rascunhos'],
             datasets: [{
                 data: @json($data),
-                backgroundColor: ['#6610f2', '#ccc', '#1d1d1d'],
+                backgroundColor: ['#6610f2', '#280b4e', '#6610f2'],
             }]
         },
         options: {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 legend: {
                     position: 'bottom',
                     labels: {
-                                color: '#fafafa',
+                                color: '#1d1d1d',
                             },
                 },
             }

@@ -25,7 +25,7 @@
         <div class="col-lg-4 sticky-lg-top vh-100">
             <div class="d-flex flex-column h-100 text-center overflow-auto shadow px-2">
                 <img class="img-fluid mb-4 m-auto" src="images/profile-pic.png" alt="Image" style="width:120px;height: 120px;">
-                <h1 class="text-primary mt-2">John Doe</h1>
+                <h1 class="text-primary mt-2">Aldomar Assolin</h1>
                 <div class="mb-4" style="height: 22px;">
                     <h4 class="typed-text-output d-inline-block text-light"></h4>
                     <div class="typed-text d-none mb-3">Web Designer, Web Developer, Front End Developer, Apps Designer, Apps Developer</div>
@@ -62,7 +62,10 @@
                             @guest
                             @if (Route::has('login'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    <i class="nav-icon bi bi-box-arrow-in-down-left"></i>
+                                    <p>{{ __('Login') }}</p>
+                                </a>
                             </li>
                             @endif
 
@@ -72,21 +75,30 @@
                             </li>
                             @endif
                             @else
-                            
 
-                                <div class="">
-                                    <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+
+                            <div class="">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->is('blog') ? 'active' : '' }}">
+                                        <i class="nav-icon bi bi-speedometer2"></i>
+                                        <p>Dashboard</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="nav-icon bi bi-box-arrow-right"></i>
+                                        <p>{{ __('Logout') }}</p>
                                     </a>
+                                </li>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                
-                            @endguest
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+
+                                @endguest
                         </ul>
                     </ul>
                 </nav>
@@ -103,6 +115,7 @@
             </div>
         </div>
         <!-- ./Sidebar Start -->
+         
         <div class="col-lg-8">
             <div class="px-2">
                 <!-- About Start -->
@@ -401,7 +414,7 @@
                         <a class="text-light px-3 border-end" href="#">FAQs</a>
                         <a class="text-light px-3" href="#">Help</a>
                     </div>
-    
+
                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                     <p class="m-0">&copy; All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a></p>
                 </div>

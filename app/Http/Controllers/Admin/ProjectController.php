@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
+use App\Models\Projeto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::latest()->paginate(10);
+        $projects = Projeto::latest()->paginate(10);
         return view('admin.pages.projects', compact('projects'));
     }
 
@@ -43,7 +43,7 @@ class ProjectController extends Controller
             $data['image'] = $request->file('image')->store('projects', 'public');
         }
 
-        Project::create($data);
+        Projeto::create($data);
 
         return redirect()->route('admin.projects.index')->with('success', 'Projeto criado com sucesso!');
     }
@@ -53,7 +53,7 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        $project = Project::findOrFail($id);
+        $project = Projeto::findOrFail($id);
         return view('admin.pages.projects.show', compact('project'));
     }
 
@@ -62,7 +62,7 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        $project = Project::findOrFail($id);
+        $project = Projeto::findOrFail($id);
         return view('admin.pages.projects.edit', compact('project'));
     }
 
@@ -71,7 +71,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $project = Project::findOrFail($id);
+        $project = Projeto::findOrFail($id);
 
         $data = $request->validate([
             'title' => 'required|string|max:255',
@@ -98,7 +98,7 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        $project = Project::findOrFail($id);
+        $project = Projeto::findOrFail($id);
 
         if ($project->image) {
             Storage::disk('public')->delete($project->image);

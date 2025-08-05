@@ -6,15 +6,15 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
-class PostSeeder extends Seeder {
+class ProjetoSeeder extends Seeder {
     public function run(): void {
         $faker = Faker::create();
-        for ($i=0; $i<10; $i++) {
-            DB::table('posts')->insert([
+        for ($i=0; $i<5; $i++) {
+            DB::table('projetos')->insert([
                 'id_usuario' => 1,
-                'titulo' => $faker->sentence(5),
-                'conteudo' => $faker->paragraph(5),
-                'status' => $faker->randomElement(['rascunho','publicado']),
+                'titulo' => $faker->sentence(3),
+                'descricao' => $faker->paragraph(),
+                'status' => $faker->randomElement(['em_andamento','concluido']),
                 'created_at' => now()
             ]);
         }

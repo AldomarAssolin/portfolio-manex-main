@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
+use App\Models\Projeto;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -12,12 +12,12 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $totalProjects = Project::count();
-        $publishedProjects = Project::where('status', 'published')->count();
-        $draftProjects = Project::where('status', 'draft')->count();
+        $totalProjects = Projeto::count();
+        $publishedProjects = Projeto::where('status', 'concluido')->count();
+        $draftProjects = Projeto::where('status', 'em_andamento')->count();
 
         // Dados para grafico de barras: último 6 meses
-        $projectByMonth = Project::selectRaw('COUNT(*) as total, MONTH(created_at) as month')
+        $projectByMonth = Projeto::selectRaw('COUNT(*) as total, MONTH(created_at) as month')
             ->where('created_at', '>=', Carbon::now()->subMonths(6))
             ->groupBy('month')
             ->orderBy('month')

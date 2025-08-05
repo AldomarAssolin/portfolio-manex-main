@@ -36,16 +36,16 @@
 
                     <td>{{ $post->title }}</td>
                     <td>
-                        <span class="badge bg-{{ $post->status === 'published' ? 'success' : 'secondary' }}">
+                        <span class="badge bg-{{ $post->status === 'publicado' ? 'success' : 'secondary' }}">
                             {{ ucfirst($post->status) }}
                         </span>
                     </td>
                     <td>{{ $post->created_at->format('d/m/Y') }}</td>
                     <td>
-                        <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('admin.posts.edit', $post->id_post) }}" class="btn btn-sm btn-warning">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('admin.posts.destroy', $post->id_post) }}" method="POST" style="display:inline;">
                             @csrf @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Excluir este post?')">
                                 <i class="bi bi-trash"></i>

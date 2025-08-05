@@ -90,7 +90,8 @@ Route::get('/', function () {
     return view('public.home');
 })->name('home');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/about', function () {
     return view('public.pages.about');
@@ -130,3 +131,7 @@ Route::get('/logout', function () {
 Route::get('/teste-middleware', function () {
     return 'Acesso liberado!';
 })->middleware('IsAdmin');
+
+Auth::routes();
+
+

@@ -48,14 +48,14 @@
                         </td>
                         <td>{{ $project->title }}</td>
                         <td>
-                            <span class="badge bg-{{ $project->status === 'published' ? 'success' : 'secondary' }}">
+                            <span class="badge bg-{{ $project->status === 'concluido' ? 'success' : 'secondary' }}">
                                 {{ ucfirst($project->status) }}
                             </span>
                         </td>
                         <td>{{ $project->created_at->format('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
-                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('admin.projects.edit', $project->id_projeto) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                            <form action="{{ route('admin.projects.destroy', $project->id_projeto) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"

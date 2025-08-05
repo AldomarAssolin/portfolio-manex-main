@@ -15,8 +15,8 @@ class PostsChart extends Component
     public function mount()
     {
         $totalPosts = Post::count();
-        $publishedPosts = Post::where('status', 'published')->count();
-        $draftPosts = Post::where('status', 'draft')->count();
+        $publishedPosts = Post::where('status', 'publlicado')->count();
+        $draftPosts = Post::where('status', 'rascunho')->count();
         $stats = Post::select('status', DB::raw('count(*) as total'))
             ->groupBy('status')
             ->pluck('total','status')

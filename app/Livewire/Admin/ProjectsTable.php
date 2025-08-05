@@ -4,7 +4,7 @@ namespace App\Livewire\Admin;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Project;
+use App\Models\Projeto as Project;
 
 class ProjectsTable extends Component
 {

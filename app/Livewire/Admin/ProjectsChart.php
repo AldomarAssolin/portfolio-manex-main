@@ -3,7 +3,7 @@
 namespace App\Livewire\Admin;
 
 use Livewire\Component;
-use App\Models\Project;
+use App\Models\Projeto as Project;
 use Illuminate\Support\Facades\DB;
 
 class ProjectsChart extends Component

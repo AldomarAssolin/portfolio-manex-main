@@ -3,7 +3,7 @@
 namespace App\Livewire\Admin;
 
 use Livewire\Component;
-use App\Models\Project;
+use App\Models\Projeto as Project;
 use Illuminate\Support\Facades\DB;
 
 class ProjectsStats extends Component
@@ -11,8 +11,8 @@ class ProjectsStats extends Component
     public function render()
     {
         $totalProjects = Project::count();
-        $publishedProjects = Project::where('status', 'published')->count();
-        $draftProjects = Project::where('status', 'draft')->count();
+        $publishedProjects = Project::where('status', 'concluido')->count();
+        $draftProjects = Project::where('status', 'em_andamento')->count();
         $projectByMonth = Project::selectRaw('COUNT(*) as total, MONTH(created_at) as month')
             ->where('created_at', '>=', now()->subMonths(6))
             ->groupBy('month')

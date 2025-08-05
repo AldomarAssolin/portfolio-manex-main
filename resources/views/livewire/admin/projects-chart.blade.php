@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
     new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Publicados', 'Rascunhos'],
+            labels: ['Concluidos', 'Em Andamento'],
             datasets: [{
                 data: @json($projectsdata),
-                backgroundColor: ['#1d1d1d', '#808008', '#fcfcfc'],
+                backgroundColor: ['#6610f2', '#280b4e', '#6610f2'],
             }]
         },
         options: {
@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
             plugins: {
                 legend: {
                     position: 'bottom',
+                    labels:{
+                        color: '#1d1d1d',
+                    }
                 },
             }
         }

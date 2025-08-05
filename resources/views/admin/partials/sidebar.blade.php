@@ -74,21 +74,21 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link {{ request()->is('admin/settings*') ? 'active' : '' }}">
-                <i class="bi bi-gear nav-icon"></i>
-                <p>Configurações</p>
-              </a>
-            </li>
-            <li class="nav-item">
               <a href="#" class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}">
                 <i class="bi bi-people nav-icon"></i>
                 <p>Usuários</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link {{ request()->is('admin/profile*') ? 'active' : '' }}">
+              <a href="{{ route('admin.profile')}}" class="nav-link {{ request()->is('admin/profile*') ? 'active' : '' }}">
                 <i class="bi bi-person-fill-gear nav-icon"></i>
                 <p>Meu Perfil</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('admin.settings.index')}}" class="nav-link {{ request()->is('admin/settings*') ? 'active' : '' }}">
+                <i class="bi bi-gear nav-icon"></i>
+                <p>Configurações</p>
               </a>
             </li>
           </ul>

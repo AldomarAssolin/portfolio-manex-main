@@ -14,6 +14,7 @@ use App\Http\Controllers\Public\ErrorController;
 use App\Http\Controllers\Public\ProjectsController as PublicProjectController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Public\PostsController as PublicPostsController;
+use App\Http\Controllers\Admin\SettingsController;
 
 /*
 
@@ -48,6 +49,14 @@ Route::middleware(['web', 'auth'])
 ->group(function () {
     Route::resource('posts', PostController::class);
 });
+
+// Rota para gerenciar configurações
+Route::middleware(['web', 'auth'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::resource('settings', SettingsController::class, );
+    });
 
 
 // profile

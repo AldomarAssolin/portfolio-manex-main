@@ -95,9 +95,7 @@ Route::get('/unauthorized', [ErrorController::class, 'unauthorized'])->name('una
 ********************************************* 
 */
 
-Route::get('/', function () {
-    return view('public.home');
-})->name('home');
+Route::get('/',  [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -132,7 +130,7 @@ Auth::routes(['register' => false]);
 
 Route::get('/logout', function () {
     Auth::logout();
-    return redirect()->route('home');
+    return redirect()->route('/home');
 })->name('logout');
 
 

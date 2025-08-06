@@ -40,13 +40,13 @@
                     @forelse($projects as $project)
                     <tr>
                         <td>
-                            @if($project->image)
-                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" style="width:60px; height:40px; object-fit:cover;">
+                            @if($project->imagem)
+                            <img src="{{ asset('storage/' . $project->imagem) }}" alt="{{ $project->titulo }}" style="width:60px; height:40px; object-fit:cover;">
                             @else
                             <span class="text-muted">Sem imagem</span>
                             @endif
                         </td>
-                        <td>{{ $project->title }}</td>
+                        <td>{{ $project->titulo }}</td>
                         <td>
                             <span class="badge bg-{{ $project->status === 'concluido' ? 'success' : 'secondary' }}">
                                 {{ ucfirst($project->status) }}
@@ -54,8 +54,8 @@
                         </td>
                         <td>{{ $project->created_at->format('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ route('admin.projects.edit', $project->id_projeto) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
-                            <form action="{{ route('admin.projects.destroy', $project->id_projeto) }}" method="POST" style="display:inline;">
+                            <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>
+                            <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-sm btn-danger"

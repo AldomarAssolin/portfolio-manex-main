@@ -31,7 +31,7 @@ class ProjectsTable extends Component
     {
         $query = Project::query()
             ->when($this->status !== 'all', fn($q) => $q->where('status', $this->status))
-            ->when($this->search, fn($q) => $q->where('title', 'like', '%' . $this->search . '%'));
+            ->when($this->search, fn($q) => $q->where('titulo', 'like', '%' . $this->search . '%'));
 
         $projects = $query->orderByDesc('created_at')->paginate(10);
 

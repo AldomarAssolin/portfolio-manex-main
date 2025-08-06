@@ -13,8 +13,11 @@ class ProjetoSeeder extends Seeder {
             DB::table('projetos')->insert([
                 'id_usuario' => 1,
                 'titulo' => $faker->sentence(3),
+                'slug' => $faker->slug(),
                 'descricao' => $faker->paragraph(),
                 'status' => $faker->randomElement(['em_andamento','concluido']),
+                'imagem' => 'https://picsum.photos/seed/' . uniqid() . '/800/400',
+                'link' => $faker->url,
                 'created_at' => now()
             ]);
         }

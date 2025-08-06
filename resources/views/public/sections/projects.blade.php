@@ -28,18 +28,18 @@ $categories = [
         <div class="col-12 col-md-6 col-lg-4 mb-2 d-flex aligm-items-center justify-content-center portfolio-item {{ $project->category }}">
             <!-- Projeto 1 -->
             <div class="card mb-3 bg-transparent shadow-sm mx-auto position-relative overflow-hidden mb-2" style="max-width: 540px;">
-                @if($project->image)
-                <img src="{{ asset('storage/' . $project->image) }}" class="card-img-top rounded-start" alt="{{ $project->title }}" style="object-fit: cover; height: 200px;">
+                @if($project->imagem)
+                <img src="{{ asset('storage/' . $project->imagem) }}" class="card-img-top rounded-start" alt="{{ $project->title }}" style="object-fit: cover; height: 200px;">
                 @else
                 <img src="{{ asset('img/portfolio-1.jpg') }}" class="card-img-top rounded-start" alt="{{ $project->title }}" style="object-fit: cover; height: 200px;">
                 @endif
                 <div class="card-body">
-                    <h5 class="card-title">{{ Str::limit($project->title, 30) }}</h5>
-                    <p class="card-text">{{ Str::limit($project->description, 130) }}</p>
+                    <h5 class="card-title">{{ Str::limit($project->titulo, 30) }}</h5>
+                    <p class="card-text">{{ Str::limit($project->descricao, 130) }}</p>
 
                     <div class="border-top-0 d-flex justify-content-end mt-3">
                         <a href="{{ $project->link }}" class="btn btn-sm btn-outline-primary mx-auto" target="_blank">GitHub</a>
-                        <a href="{{ route('public.projects.show', $project->id) }}" class="btn btn-sm btn-outline-info mx-auto">Ver Mais</a>
+                        <a href="{{ route('public.projects.show', $project->slug) }}" class="btn btn-sm btn-outline-info mx-auto">Ver Mais</a>
                     </div>
                     <div class="portfolio-btn d-flex align-items-center justify-content-center">
                         <a href="{{ asset('storage/' . $project->image) }}" data-lightbox="portfolio">

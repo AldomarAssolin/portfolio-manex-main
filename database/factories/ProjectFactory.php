@@ -11,11 +11,10 @@ class ProjectFactory extends Factory
         return [
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(3),
-            'link' => $this->faker->url,
+            'imagem' => 'https://picsum.photos/seed/' . uniqid() . '/800/400',
             'status' => $this->faker->randomElement(['draft', 'published']),
-            'image' => null,
+            'link' => $this->faker->url,
             'created_at' => $this->faker->dateTimeBetween('-6 months', 'now'),
-            'image' => 'https://picsum.photos/seed/' . uniqid() . '/800/400',
         ];
     }
 }

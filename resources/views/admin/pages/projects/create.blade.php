@@ -27,22 +27,22 @@
                         
                         <!-- Título -->
                         <div class="form-group">
-                            <label for="title">Título <span class="text-danger">*</span></label>
-                            <input type="text" name="title" id="title" 
-                                   class="form-control @error('title') is-invalid @enderror"
-                                   value="{{ old('title') }}" placeholder="Digite o título do projeto">
-                            @error('title')
+                            <label for="titulo">Título <span class="text-danger">*</span></label>
+                            <input type="text" name="titulo" id="titulo" 
+                                   class="form-control @error('titulo') is-invalid @enderror"
+                                   value="{{ old('titulo') }}" placeholder="Digite o título do projeto">
+                            @error('titulo')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <!-- Descrição -->
                         <div class="form-group">
-                            <label for="description">Descrição</label>
-                            <textarea name="description" id="description" rows="4" 
-                                      class="form-control @error('description') is-invalid @enderror"
-                                      placeholder="Descreva o projeto">{{ old('description') }}</textarea>
-                            @error('description')
+                            <label for="descricao">Descrição</label>
+                            <textarea name="descricao" id="descricao" rows="4" 
+                                      class="form-control @error('descricao') is-invalid @enderror"
+                                      placeholder="Descreva o projeto">{{ old('descricao') }}</textarea>
+                            @error('descricao')
                                 <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -62,8 +62,8 @@
                         <div class="form-group">
                             <label for="status">Status <span class="text-danger">*</span></label>
                             <select name="status" id="status" class="form-control @error('status') is-invalid @enderror">
-                                <option value="draft" {{ old('status') === 'draft' ? 'selected' : '' }}>Rascunho</option>
-                                <option value="published" {{ old('status') === 'published' ? 'selected' : '' }}>Publicado</option>
+                                <option value="em_andamento" {{ old('status') === 'em_andamento' ? 'selected' : '' }}>Em_andamento</option>
+                                <option value="concluido" {{ old('status') === 'concluido' ? 'selected' : '' }}>Concluido</option>
                             </select>
                             @error('status')
                                 <span class="invalid-feedback">{{ $message }}</span>
@@ -72,8 +72,8 @@
 
                         <!-- Upload de Imagem -->
                         <div class="form-group">
-                            <label for="image">Imagem do Projeto</label>
-                            <input type="file" name="image" id="image" 
+                            <label for="imagem">imagem do Projeto</label>
+                            <input type="file" name="imagem" id="imagem" 
                                    class="form-control-file @error('image') is-invalid @enderror">
                             @error('image')
                                 <span class="invalid-feedback d-block">{{ $message }}</span>

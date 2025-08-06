@@ -11,8 +11,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $latestProjects = Projeto::where('status', 'published')->latest()->take(3)->get();
-        $latestPosts = Post::where('status', 'published')->latest()->take(3)->get();
+        $latestProjects = Projeto::where('status', 'concluido')->latest()->take(3)->get();
+        $latestPosts = Post::where('status', 'concluido')->latest()->take(3)->get();
         return view('public.pages.home', compact(['latestProjects', 'latestPosts']));
     }
 }

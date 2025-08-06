@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Projeto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -23,6 +26,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
+
+
+        // Retorna a view de criação de projeto
         return view('admin.pages.projects.create');
     }
 
@@ -31,81 +37,138 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'link' => 'nullable|url',
-            'status' => 'required|in:draft,published',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        $request->validate([
+            'titulo' => 'required|string|max:255|unique:projetos,titulo',
+            'descricao' => 'nullable|string',
+            'imagem' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'status' => ['required', Rule::in(['rascunho', 'concluido'])]
         ]);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('projects', 'public');
+        $slug = Str::slug($request->titulo);
+        if (Projeto::where('slug', $slug)->exists()) {
+            $slug .= '-' . uniqid();
         }
 
-        Projeto::create($data);
+        $imagemPath = $request->hasFile('imagem')
+            ? $request->file('imagem')->store('projects', 'public')
+            : null;
 
-        return redirect()->route('admin.projects.index')->with('success', 'Projeto criado com sucesso!');
+        Projeto::create([
+            'id_usuario'  => Auth::id(),
+            'titulo' => $request->titulo,
+            'slug' => $slug,
+            'descricao' => $request->descricao,
+            'status' => $request->status,
+            'imagem' => $imagemPath,
+            'link' => $request->link,
+        ]);
+
+        return redirect()
+            ->route('admin.projects.index')
+            ->with('success', 'Projeto criado com sucesso!');
     }
 
     /**
      * Mostra um projeto.
      */
-    public function show(string $id)
+    public function show(Projeto $project)
     {
-        $project = Projeto::findOrFail($id);
         return view('admin.pages.projects.show', compact('project'));
     }
 
     /**
      * Formulário de edição.
      */
-    public function edit(string $id)
+    public function edit(Projeto $project)
     {
-        $project = Projeto::findOrFail($id);
         return view('admin.pages.projects.edit', compact('project'));
     }
 
     /**
      * Atualiza um projeto.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Projeto $project)
     {
-        $project = Projeto::findOrFail($id);
-
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'link' => 'nullable|url',
-            'status' => 'required|in:draft,published',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        // Validação dos dados
+        $request->validate([
+            'titulo' => ['required', 'string', 'max:255', Rule::unique('projetos')->ignore($project->id_projeto, 'id_projeto')],
+            'descricao' => 'nullable|string',
+            'imagem' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'status' => ['required', Rule::in(['rascunho', 'concluido'])]
         ]);
 
-        if ($request->hasFile('image')) {
-            if ($project->image) {
-                Storage::disk('public')->delete($project->image);
-            }
-            $data['image'] = $request->file('image')->store('projects', 'public');
+        // Gera slug único
+        $slug = Str::slug($request->titulo);
+        if (Projeto::where('slug', $slug)->where('id_projeto', '!=', $project->id_projeto)->exists()) {
+            $slug .= '-' . uniqid();
         }
 
-        $project->update($data);
+        // Atualiza a imagem se fornecida
+        if ($request->hasFile('imagem')) {
+            $imagemPath = $request->file('imagem')->store('projects', 'public');
+            $project->imagem = $imagemPath;
+        }
 
-        return redirect()->route('admin.projects.index')->with('success', 'Projeto atualizado com sucesso!');
+        // Atualiza os dados do projeto
+        $project->update([
+            'titulo' => $request->titulo,
+            'slug' => $slug,
+            'descricao' => $request->descricao,
+            'status' => $request->status,
+        ]);
+
+        return redirect()
+            ->route('admin.projects.index')
+            ->with('success', 'Projeto atualizado com sucesso!');
     }
 
     /**
      * Remove um projeto.
      */
-    public function destroy(string $id)
+    public function destroy(Projeto $project)
     {
-        $project = Projeto::findOrFail($id);
-
-        if ($project->image) {
-            Storage::disk('public')->delete($project->image);
+        if ($project->imagem) {
+            Storage::disk('public')->delete($project->imagem);
         }
 
         $project->delete();
 
-        return redirect()->route('admin.projects.index')->with('success', 'Projeto deletado com sucesso!');
+        return redirect()
+            ->route('admin.projects.index')
+            ->with('success', 'Projeto deletado com sucesso!');
+    }
+
+    /**
+     * Validação de dados.
+     */
+    private function validatedData(Request $request, ?Projeto $project = null): array
+    {
+        return $request->validate([
+            'titulo' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('projetos', 'titulo')->ignore($project?->id_projeto, 'id_projeto')
+            ],
+            'descricao' => 'nullable|string',
+            'imagem' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'status' => 'required|in:em_andamento,concluido',
+            'link' => 'nullable|url',
+        ]);
+    }
+
+    /**
+     * Gera slug único.
+     */
+    private function generateUniqueSlug(string $titulo, ?int $ignoreId = null): string
+    {
+        $slug = Str::slug($titulo);
+        $query = Projeto::where('slug', $slug);
+        if ($ignoreId) {
+            $query->where('id_projeto', '!=', $ignoreId);
+        }
+        $exists = $query->exists();
+
+        return $exists ? "{$slug}-" . uniqid() : $slug;
     }
 }

@@ -26,13 +26,13 @@
         <div class="grid md:grid-cols-3 gap-6">
             @foreach($projects as $project)
             <div class="bg-white rounded-lg shadow hover:shadow-lg transition mb-3">
-                @if($project->image)
-                <img src="{{ asset('storage/' . $project->image) }}" class="img-thumbnail object-cover rounded">
+                @if($project->imagem)
+                <img src="{{ asset('storage/' . $project->imagem) }}" class="img-thumbnail object-cover rounded">
                 @endif
                 <div class="p-4">
-                    <h3 class="text-xl font-semibold">{{ $project->title }}</h3>
-                    <p class="fs-5 mb-4">{{ Str::limit($project->description, 300) }}</p>
-                    <a href="{{ route('public.projects.show', $project->id) }}"
+                    <h3 class="text-xl font-semibold">{{ $project->titulo }}</h3>
+                    <p class="fs-5 mb-4">{{ Str::limit($project->descricao, 300) }}</p>
+                    <a href="{{ route('public.projects.show', $project->slug) }}"
                         class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
                         Ver mais
                     </a>

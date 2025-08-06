@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->text('descricao');
             $table->string('imagem')->nullable();
             $table->enum('status', ['em_andamento', 'concluido'])->default('em_andamento');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // Assuming 'role' is a field to determine user roles
+        'cargo', // Assuming 'role' is a field to determine user roles
     ];
 
     /**

@@ -71,7 +71,10 @@
 
                             @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">
+                                    <i class="nav-icon bi bi-box-arrow-left"></i>
+                                    <p>{{ __('Register') }}</p>
+                                </a>
                             </li>
                             @endif
                             @else
@@ -186,7 +189,10 @@
                         <div class="col-sm-6">
                             <div class="skill mb-4">
                                 <div class="d-flex justify-content-between">
-                                    <p class="mb-2">HTML</p>
+                                    <p class="mb-2">
+                                        <i class="bi bi-filetype-html text-danger" style="font-size:30px;"></i>
+                                        HTML
+                                    </p>
                                     <p class="mb-2">95%</p>
                                 </div>
                                 <div class="progress">
@@ -195,7 +201,10 @@
                             </div>
                             <div class="skill mb-4">
                                 <div class="d-flex justify-content-between">
-                                    <p class="mb-2">CSS</p>
+                                    <p class="mb-2">
+                                        <i class="bi bi-filetype-css" style="font-size:30px;color:blue;"></i>
+                                        CSS
+                                    </p>
                                     <p class="mb-2">85%</p>
                                 </div>
                                 <div class="progress">

@@ -11,10 +11,17 @@ class Projeto extends Model
 
     protected $table = 'projetos';
     protected $primaryKey = 'id_projeto';
-    protected $fillable = ['id_usuario','titulo','descricao','imagem','status'];
+    public $timestamps = true;
+    protected $fillable = ['id_usuario','titulo', 'slug', 'descricao','imagem','status','link'];
 
     public function usuario()
     {
         return $this->belongsTo(Usuario::class, 'id_usuario');
+    }
+
+     // Route Model Binding vai usar o slug
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

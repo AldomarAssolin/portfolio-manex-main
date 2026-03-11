@@ -58,6 +58,14 @@ Route::middleware(['web', 'auth'])
         Route::resource('settings', SettingsController::class, );
     });
 
+// Rota para gerenciar configurações
+Route::middleware(['web', 'auth'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::resource('users', SettingsController::class, );
+    });
+
 
 // profile
 Route::middleware(['web', 'auth'])
